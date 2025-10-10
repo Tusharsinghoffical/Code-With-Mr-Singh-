@@ -1,6 +1,0 @@
-Pillow
-qrcode
-pyzbar
-opencv-python
-geocoder
-requests

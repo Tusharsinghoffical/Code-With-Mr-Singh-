@@ -282,7 +282,7 @@
     <footer>
       <div class="footer-content">
         <!-- About Section -->
-        <div class="footer-section about">
+        <div class="footer-section about" data-aos="fade-up">
           <div class="logo">
             <a href="index.html"><h3>Code With Mr Singh</h3></a>
           </div>
@@ -290,34 +290,6 @@
             AI & Data Scientist | Web Developer  <br> | Freelancer <br />
             Tech Enthusiast | Data Analyst | Python Developer
           </p>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="footer-section links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Services -->
-        <div class="footer-section services">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="projects.html">AI & Data Science</a></li>
-            <li><a href="projects.html">Web Development</a></li>
-            <li><a href="projects.html">Automation (AI Agents)</a></li>
-            <li><a href="projects.html">Python Solutions</a></li>
-          </ul>
-        </div>
-
-        <!-- Connect + Newsletter -->
-        <div class="footer-section connect">
-          <h4>Connect</h4>
           <div class="social-links">
             <a href="https://github.com/Tusharsinghoffical" target="_blank"
               ><i class="fab fa-github"></i
@@ -336,10 +308,38 @@
               ><i class="fas fa-envelope"></i
             ></a>
           </div>
+        </div>
 
+        <!-- Quick Links -->
+        <div class="footer-section links" data-aos="fade-up" data-aos-delay="100">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-section services" data-aos="fade-up" data-aos-delay="200">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="projects.html">AI & Data Science</a></li>
+            <li><a href="projects.html">Web Development</a></li>
+            <li><a href="projects.html">Automation (AI Agents)</a></li>
+            <li><a href="projects.html">Python Solutions</a></li>
+          </ul>
+        </div>
+
+        <!-- Connect + Newsletter -->
+        <div class="footer-section connect" data-aos="fade-up" data-aos-delay="300">
+          <h4>Connect</h4>
+          <p>Stay updated with my latest projects and insights</p>
           <div class="newsletter">
-            <p>Subscribe for updates</p>
-           
+            <input type="email" placeholder="Enter your email" />
+            <button>Subscribe</button>
           </div>
         </div>
       </div>
@@ -373,11 +373,31 @@
       // Navbar menu toggle for mobile
       const menuToggle = document.querySelector(".menu-toggle");
       const navLinks = document.querySelector(".nav-links");
+      const navLinksItems = document.querySelectorAll(".nav-links li a");
+
+      // Function to close mobile menu
+      function closeMobileMenu() {
+        navLinks.classList.remove("active");
+      }
+
+      // Function to toggle mobile menu
+      function toggleMobileMenu() {
+        navLinks.classList.toggle("active");
+      }
 
       if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-          navLinks.classList.toggle("active");
-          console.log("Menu toggle clicked"); // Debug log
+        menuToggle.addEventListener("click", toggleMobileMenu);
+        
+        // Close menu when clicking on a nav link
+        navLinksItems.forEach(link => {
+          link.addEventListener("click", closeMobileMenu);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains("active")) {
+            closeMobileMenu();
+          }
         });
       }
 
@@ -407,6 +427,40 @@
       // Add loading animation
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
+      });
+
+      // Newsletter subscription functionality
+      document.querySelectorAll('.newsletter button').forEach(button => {
+        button.addEventListener('click', function() {
+          const newsletterSection = this.closest('.newsletter');
+          const emailInput = newsletterSection.querySelector('input[type="email"]');
+          const email = emailInput.value.trim();
+          
+          // Simple email validation
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+          }
+          
+          // Simulate subscription process
+          this.textContent = 'Subscribing...';
+          this.disabled = true;
+          
+          // In a real implementation, you would send the email to your backend here
+          // For now, we'll simulate a successful subscription
+          setTimeout(() => {
+            this.textContent = 'Subscribed!';
+            this.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+            emailInput.value = '';
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              this.textContent = 'Subscribe';
+              this.disabled = false;
+              this.style.background = ''; // Reset to CSS gradient
+            }, 2000);
+          }, 1000);
+        });
       });
 
       // Debug: Check if all elements are loaded

@@ -256,30 +256,12 @@
         </div>
 
         <!-- Connect + Newsletter -->
-        <div class="footer-section connect">
+        <div class="footer-section connect" data-aos="fade-up" data-aos-delay="300">
           <h4>Connect</h4>
-          <div class="social-links">
-            <a href="https://github.com/Tusharsinghoffical" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/tusharsingh2011/"
-              target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a
-              href="https://www.youtube.com/@tusharsinghoffical"
-              target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a href="mailto:tusharsinghkumar04@gmail.com"
-              ><i class="fas fa-envelope"></i
-            ></a>
-          </div>
-
+          <p>Stay updated with my latest projects and insights</p>
           <div class="newsletter">
-            <p>Subscribe for updates</p>
-           
+            <input type="email" placeholder="Enter your email" />
+            <button>Subscribe</button>
           </div>
         </div>
       </div>
@@ -313,11 +295,31 @@
       // Navbar menu toggle for mobile
       const menuToggle = document.querySelector(".menu-toggle");
       const navLinks = document.querySelector(".nav-links");
+      const navLinksItems = document.querySelectorAll(".nav-links li a");
+
+      // Function to close mobile menu
+      function closeMobileMenu() {
+        navLinks.classList.remove("active");
+      }
+
+      // Function to toggle mobile menu
+      function toggleMobileMenu() {
+        navLinks.classList.toggle("active");
+      }
 
       if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-          navLinks.classList.toggle("active");
-          console.log("Menu toggle clicked"); // Debug log
+        menuToggle.addEventListener("click", toggleMobileMenu);
+        
+        // Close menu when clicking on a nav link
+        navLinksItems.forEach(link => {
+          link.addEventListener("click", closeMobileMenu);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains("active")) {
+            closeMobileMenu();
+          }
         });
       }
 
@@ -394,6 +396,40 @@ Thanks!`;
       // Add loading animation
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
+      });
+
+      // Newsletter subscription functionality
+      document.querySelectorAll('.newsletter button').forEach(button => {
+        button.addEventListener('click', function() {
+          const newsletterSection = this.closest('.newsletter');
+          const emailInput = newsletterSection.querySelector('input[type="email"]');
+          const email = emailInput.value.trim();
+          
+          // Simple email validation
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+          }
+          
+          // Simulate subscription process
+          this.textContent = 'Subscribing...';
+          this.disabled = true;
+          
+          // In a real implementation, you would send the email to your backend here
+          // For now, we'll simulate a successful subscription
+          setTimeout(() => {
+            this.textContent = 'Subscribed!';
+            this.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+            emailInput.value = '';
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              this.textContent = 'Subscribe';
+              this.disabled = false;
+              this.style.background = ''; // Reset to CSS gradient
+            }, 2000);
+          }, 1000);
+        });
       });
 
       // Debug: Check if all elements are loaded

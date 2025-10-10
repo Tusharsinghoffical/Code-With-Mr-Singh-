@@ -1,1 +1,0 @@
-# Testimonials app initialization 

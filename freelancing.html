@@ -265,7 +265,7 @@
           <span class="premium-badge">PREMIUM FREELANCING SERVICES</span>
           <h1>Professional <span class="service-highlight">Freelancing</span> Services</h1>
           <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
-            A passionate Data Scientist and <span class="service-highlight">AI Agents Developer</span> with expertise in Python, Machine Learning, and building intelligent AI Agents. I transform complex data into actionable insights and create smart solutions that make a difference.
+            A passionate <span class="service-highlight">Data Scientist</span>, <span class="service-highlight">Web Developer</span> and <span class="service-highlight">AI Agents Developer</span> with expertise in Python, Machine Learning, and building intelligent AI Agents. I transform complex data into actionable insights and create smart solutions that make a difference.
           </p>
         </div>
       </section>
@@ -385,7 +385,7 @@
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <div class="price-tag">Starting at $999</div>
+          <div class="price-tag">Starting at $499</div>
           <div class="service-icon">🤖</div>
           <h3>AI Agents</h3>
           <p>
@@ -415,7 +415,7 @@
           data-aos="fade-up"
           data-aos-delay="500"
         >
-          <div class="price-tag">Starting at $499</div>
+          <div class="price-tag">Starting at $299</div>
           <div class="service-icon">📊</div>
           <h3>Data Science and Analysis</h3>
           <p>
@@ -444,7 +444,7 @@
         <div class="packages-grid">
           <div class="package-card" data-aos="fade-up" data-aos-delay="100">
             <h3 class="package-name">Starter</h3>
-            <div class="package-price">$499</div>
+            <div class="package-price">$299</div>
             <ul class="package-features">
               <li>Basic Website (5 pages)</li>
               <li>Responsive Design</li>
@@ -458,7 +458,7 @@
           <div class="package-card popular" data-aos="fade-up" data-aos-delay="200">
             <div class="popular-badge">MOST POPULAR</div>
             <h3 class="package-name">Professional</h3>
-            <div class="package-price">$1,299</div>
+            <div class="package-price">$999</div>
             <ul class="package-features">
               <li>Dynamic Website</li>
               <li>User Authentication</li>
@@ -547,7 +547,7 @@
 
       <section class="cta-section" data-aos="fade-up">
         <div class="cta-content">
-          <h2>Ready to Start Your <span class="service-highlight">Project</span>?</h2>
+          <h2>Ready to Start Your Project ?</h2>
           <p>
             Let's discuss how I can help bring your ideas to life with professional freelancing services.
           </p>
@@ -562,7 +562,7 @@
     <footer>
       <div class="footer-content">
         <!-- About Section -->
-        <div class="footer-section about">
+        <div class="footer-section about" data-aos="fade-up">
           <div class="logo">
             <a href="index.html"><h3>Code With Mr Singh</h3></a>
           </div>
@@ -571,10 +571,28 @@
               | Freelancer <br />
             Tech Enthusiast | Data Analyst | Python Developer
           </p>
+          <div class="social-links">
+            <a href="https://github.com/Tusharsinghoffical" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/tusharsingh2011/"
+              target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@tusharsinghoffical"
+              target="_blank
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="mailto:tusharsinghkumar04@gmail.com"
+              ><i class="fas fa-envelope"></i
+            ></a>
+          </div>
         </div>
 
         <!-- Quick Links -->
-        <div class="footer-section links">
+        <div class="footer-section links" data-aos="fade-up" data-aos-delay="100">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -587,7 +605,7 @@
         </div>
 
         <!-- Services -->
-        <div class="footer-section services">
+        <div class="footer-section services" data-aos="fade-up" data-aos-delay="200">
           <h4>Services</h4>
           <ul>
             <li><a href="projects.html">AI & Data Science</a></li>
@@ -599,29 +617,12 @@
         </div>
 
         <!-- Connect + Newsletter -->
-        <div class="footer-section connect">
+        <div class="footer-section connect" data-aos="fade-up" data-aos-delay="300">
           <h4>Connect</h4>
-          <div class="social-links">
-            <a href="https://github.com/Tusharsinghoffical" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/tusharsingh2011/"
-              target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a
-              href="https://www.youtube.com/@tusharsinghoffical"
-              target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a href="mailto:tusharsinghkumar04@gmail.com"
-              ><i class="fas fa-envelope"></i
-            ></a>
-          </div>
-
+          <p>Stay updated with my latest projects and insights</p>
           <div class="newsletter">
-            <p>Subscribe for updates</p>
+            <input type="email" placeholder="Enter your email" />
+            <button>Subscribe</button>
           </div>
         </div>
       </div>
@@ -654,11 +655,31 @@
       // Navbar menu toggle for mobile
       const menuToggle = document.querySelector(".menu-toggle");
       const navLinks = document.querySelector(".nav-links");
+      const navLinksItems = document.querySelectorAll(".nav-links li a");
+
+      // Function to close mobile menu
+      function closeMobileMenu() {
+        navLinks.classList.remove("active");
+      }
+
+      // Function to toggle mobile menu
+      function toggleMobileMenu() {
+        navLinks.classList.toggle("active");
+      }
 
       if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-          navLinks.classList.toggle("active");
-          console.log("Menu toggle clicked"); // Debug log
+        menuToggle.addEventListener("click", toggleMobileMenu);
+        
+        // Close menu when clicking on a nav link
+        navLinksItems.forEach(link => {
+          link.addEventListener("click", closeMobileMenu);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains("active")) {
+            closeMobileMenu();
+          }
         });
       }
 
@@ -736,6 +757,40 @@
       // Add loading animation
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
+      });
+
+      // Newsletter subscription functionality
+      document.querySelectorAll('.newsletter button').forEach(button => {
+        button.addEventListener('click', function() {
+          const newsletterSection = this.closest('.newsletter');
+          const emailInput = newsletterSection.querySelector('input[type="email"]');
+          const email = emailInput.value.trim();
+          
+          // Simple email validation
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+          }
+          
+          // Simulate subscription process
+          this.textContent = 'Subscribing...';
+          this.disabled = true;
+          
+          // In a real implementation, you would send the email to your backend here
+          // For now, we'll simulate a successful subscription
+          setTimeout(() => {
+            this.textContent = 'Subscribed!';
+            this.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+            emailInput.value = '';
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              this.textContent = 'Subscribe';
+              this.disabled = false;
+              this.style.background = ''; // Reset to CSS gradient
+            }, 2000);
+          }, 1000);
+        });
       });
 
       // Debug: Check if all elements are loaded
