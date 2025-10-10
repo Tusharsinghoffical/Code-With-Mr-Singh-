@@ -4,7 +4,7 @@ A professional portfolio website showcasing projects, services, and skills as a 
 
 ## 🚀 Live Demo
 
-[https://codewithmrsingh.onrender.com/](Portfolio Website)
+[https://codewithmrsingh.onrender.com](Portfolio Website)
 
 ## 📋 Description
 
